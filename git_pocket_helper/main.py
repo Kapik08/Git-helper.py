@@ -10,11 +10,13 @@ isloop = True
 GIT_Path = "" 
 configPath = "configPath"
 
-
+# if custom path exists set GIT path to custom one 
+# else set it do default
 if cc_GIT_PATH == "":
-    GIT_Path = 'gittemp'
+    GIT_Path = 'gittemp.txt'
 else:
-    GIT_Path = cc_GIT_PATH
+    GIT_Path = cc_GIT_PATH + ".txt"
+    GIT_Path.replace(" ","_")
 
 
 
@@ -56,7 +58,20 @@ def gitHelper():
     input('enter to close')
     
 def settings():
-    
+    clear()
+
+    print("1) for custom git path || press 0 to go back","\n",)
+    match(int(input("enter num for what you wanna change "))):
+
+        case 1:
+            settingsCC_path()
+
+        case 2:
+            pass
+        case 0:
+            pass
+
+def settingsCC_path():
     customPath = input('nazwij file path/name : ')
     logFilew("config/customPath.txt",customPath)
     input("it is adwised to restart the program to make sure it works properly")
